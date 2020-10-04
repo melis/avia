@@ -5,6 +5,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, test: state.test + 1 };
     case 'TEN':
       return { ...state, test: state.test + 10 };
+    case 'SET_ALL_TICKETS':
+      return { ...state, allTickets: action.tickets };
     default:
       return state;
   }

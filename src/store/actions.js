@@ -1,7 +1,9 @@
 export const setAllTickets = (tickets) => {
-  return {
-    type: 'SET_ALL_TICKETS',
-    tickets,
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_ALL_TICKETS',
+      tickets,
+    });
   };
 };
 

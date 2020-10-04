@@ -1,0 +1,16 @@
+.container {
+  max-width: 960px;
+  margin: auto;
+  background-color: #f3f7fa;
+  padding: 20px;
+
+  img {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .app {
+    display: flex;
+    justify-content: center;
+  }
+}
