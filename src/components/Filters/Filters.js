@@ -5,8 +5,42 @@ import styles from './Filters.module.scss';
 const Filters = () => {
   return (
     <div className={styles.filters}>
-      <Checkbox>Все</Checkbox>
-      <Checkbox>Без пересадок</Checkbox>
+      <div className={styles.title}>КОЛИЧЕСТВО ПЕРЕСАДОК</div>
+      <Checkbox
+        onChange={(a) => {
+          console.log(a.target.checked);
+        }}
+      >
+        Все
+      </Checkbox>
+      <Checkbox
+        onChange={(a) => {
+          console.log(a.target.checked);
+        }}
+      >
+        Без пересадок
+      </Checkbox>
+      <Checkbox
+        onChange={(a) => {
+          console.log(a.target.checked);
+        }}
+      >
+        1 пересадка
+      </Checkbox>
+      <Checkbox
+        onChange={(a) => {
+          console.log(a.target.checked);
+        }}
+      >
+        2 пересадки
+      </Checkbox>
+      <Checkbox
+        onChange={(a) => {
+          console.log(a.target.checked);
+        }}
+      >
+        3 пересадки
+      </Checkbox>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { compose } from 'redux';
+
 class Api {
   baseApi = 'https://aviasales-test-api.java-mentor.com/';
   searchId = '';
@@ -9,33 +11,24 @@ class Api {
       const res = await fetch(`${this.baseApi}search`);
       if (!res.ok) throw new Error(res.statusText);
       const search = await res.json();
-      return search.searchId;
+      this.searchId = search.searchId;
     } catch (e) {
       console.log(e);
     }
   }
 
   async getTickets() {
-    let tickets = [];
+    if (!this.searchId) this.newSearchId();
     try {
-      let stop = false;
-      const searchId = await this.newSearchId();
-      while (!stop) {
-        try {
-          const res = await fetch(`${this.baseApi}tickets?searchId=${searchId}`);
-          if (!res.ok) throw new Error(res.statusText);
-          const data = await res.json();
-          tickets = [...tickets, ...data.tickets];
-          stop = data.stop;
-        } catch (e) {
-          if (e.message !== 'Internal Server Error') throw e;
-          console.log(e.message);
-        }
-      }
+      const res = await fetch(`${this.baseApi}tickets?searchId=${this.searchId}`);
+      if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json();
+      if (data.stop) this.searchId = '';
+
+      return data;
     } catch (e) {
-      console.log(e);
+      return { error: e.message };
     }
-    return tickets;
   }
 }
 
