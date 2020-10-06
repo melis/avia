@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Radio } from 'antd';
 import styles from './Tab.module.scss';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
+import { bindActionCreators } from 'redux';
 
-const Tab = () => {
-  const [val, setVal] = useState('free');
+const Tab = (props) => {
+  const { kind, setKind } = props;
 
   return (
     <Radio.Group
       className={styles.tab}
-      value={val}
+      value={kind}
       onChange={(a) => {
-        setVal(a.target.value);
+        setKind(a.target.value);
       }}
       style={{ marginBottom: 16 }}
     >
-      <Radio.Button value="free">САМЫЙ ДЕШЕВЫЙ</Radio.Button>
-      <Radio.Button value="fast">САМЫЙ БЫСТРЫЙ</Radio.Button>
+      <Radio.Button value="INEXPENSIVE">САМЫЙ ДЕШЕВЫЙ</Radio.Button>
+      <Radio.Button value="FASTEST">САМЫЙ БЫСТРЫЙ</Radio.Button>
     </Radio.Group>
   );
 };
-export default Tab;
+const mapToProps = (state) => {
+  return {
+    kind: state.kind,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  const { setKind } = bindActionCreators(actions, dispatch);
+  return {
+    setKind,
+  };
+};
+export default connect(mapToProps, mapDispatchToProps)(Tab);
