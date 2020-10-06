@@ -21,7 +21,9 @@ const Ticket = (props) => {
           </div>
           <div>
             <div className={styles.titles}>В ПУТИ </div>
-            <div className={styles.val}>{ticket.segments[0].duration}</div>
+            <div className={styles.val}>
+              {Math.trunc(ticket.segments[0].duration / 60)}ч {ticket.segments[0].duration % 60}м
+            </div>
           </div>
           <div>
             <div className={styles.titles}>ПЕРЕСАДКИ</div>
@@ -37,7 +39,9 @@ const Ticket = (props) => {
           </div>
           <div>
             <div className={styles.titles}>В ПУТИ </div>
-            <div className={styles.val}>{ticket.segments[1].duration}</div>
+            <div className={styles.val}>
+              {Math.trunc(ticket.segments[1].duration / 60)}ч - {ticket.segments[1].duration % 60}м
+            </div>
           </div>
           <div>
             <div className={styles.titles}>ПЕРЕСАДКИ</div>

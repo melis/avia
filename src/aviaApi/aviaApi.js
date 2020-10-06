@@ -1,5 +1,3 @@
-import { compose } from 'redux';
-
 class Api {
   baseApi = 'https://aviasales-test-api.java-mentor.com/';
   searchId = '';

@@ -10,3 +10,7 @@ export const setAllTickets = (tickets) => {
 export const setFilter = (filter) => {
   return { type: 'FILTER_CHANGE', filter };
 };
+
+export const setKind = (kind) => {
+  return { type: 'KIND_CHANGE', kind };
+};

@@ -1,38 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
+import styles from './Tickets.module.scss';
+import Spinner from '../Spinner/Spinner';
 import * as actions from '../../store/actions';
 import aviaApi from '../../aviaApi/aviaApi';
 import { ticketsCreator } from './ticketsCreator';
-// import { bindActionCreators } from 'redux';
 
 const Tickets = (props) => {
+  const { allTickets, kind, setAllTickets } = props;
+  const [loading, setLoading] = useState(false);
   const [showCount, setShowCount] = useState(5);
-  const { allTickets } = props;
 
-  function recurs() {
+  const [localTickets, setLocalTickets] = useState([]);
+
+  const getTickets = () => {
     aviaApi.getTickets().then((a) => {
       if (a.tickets) {
-        props.setAllTickets(a.tickets);
+        setAllTickets(a.tickets);
       }
       if (!a.stop) {
-        recurs();
-      }
+        getTickets();
+      } else setLoading(true);
     });
-  }
+  };
 
   useEffect(() => {
-    recurs();
+    getTickets();
   }, []);
 
-  const arr = [...allTickets];
-  arr.length = showCount;
-  const tickets = ticketsCreator(arr);
+  useEffect(() => {
+    const arr = [...allTickets];
+    setLocalTickets(ticketsCreator(arr, kind, showCount));
+  }, [allTickets.length, showCount, kind]);
 
   return (
     <div>
-      <div>{tickets}</div>
-      <div>
+      <Spinner loading={loading} />
+      <div>{localTickets}</div>
+      <div className={styles.showMore}>
         <span onClick={() => setShowCount(showCount + 5)}>Показать еще</span>
       </div>
     </div>
@@ -41,15 +46,10 @@ const Tickets = (props) => {
 
 const mapToProps = (state) => {
   return {
+    kind: state.kind,
     filter: state.filter,
     allTickets: state.allTickets,
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   const { setAllTickets, inc } = bindActionCreators(actions, dispatch);
-//   return {
-//     inc,
-//     setAllTickets,
-//   };
-// };
+
 export default connect(mapToProps, actions)(Tickets);

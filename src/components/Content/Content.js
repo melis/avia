@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Checkbox } from 'antd';
+import React from 'react';
 import styles from './Content.module.scss';
 import Tab from '../Tab/Tab';
 import Tickets from '../Tickets/Tickets';
