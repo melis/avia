@@ -19,11 +19,7 @@ const filter = (arr, transfer) => {
       newArr = [
         ...newArr,
         ...arr.filter((el) => {
-          if (
-            el.segments[0].stops.length <= 1 &&
-            el.segments[1].stops.length <= 1 &&
-            (el.segments[0].stops.length === 1 || el.segments[1].stops.length === 1)
-          ) {
+          if (el.segments[0].stops.length === 1 && el.segments[1].stops.length === 1) {
             return true;
           }
           return false;
@@ -34,11 +30,7 @@ const filter = (arr, transfer) => {
       newArr = [
         ...newArr,
         ...arr.filter((el) => {
-          if (
-            el.segments[0].stops.length <= 2 &&
-            el.segments[1].stops.length <= 2 &&
-            (el.segments[0].stops.length === 2 || el.segments[1].stops.length === 2)
-          ) {
+          if (el.segments[0].stops.length === 2 && el.segments[1].stops.length === 2) {
             return true;
           }
           return false;
@@ -49,11 +41,7 @@ const filter = (arr, transfer) => {
       newArr = [
         ...newArr,
         ...arr.filter((el) => {
-          if (
-            el.segments[0].stops.length <= 3 &&
-            el.segments[1].stops.length <= 3 &&
-            (el.segments[0].stops.length === 3 || el.segments[1].stops.length === 3)
-          ) {
+          if (el.segments[0].stops.length === 3 && el.segments[1].stops.length === 3) {
             return true;
           }
           return false;
