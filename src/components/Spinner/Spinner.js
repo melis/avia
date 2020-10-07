@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './Spinner.module.scss';
 import { LoadingOutlined } from '@ant-design/icons';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 15 }} spin />;
 
 const Spinner = (props) => {
   const { loading } = props;

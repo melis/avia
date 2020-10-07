@@ -1,42 +1,53 @@
 import React from 'react';
 import { Checkbox } from 'antd';
 import styles from './Filters.module.scss';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
+import { bindActionCreators } from 'redux';
 
-const Filters = () => {
+const Filters = (props) => {
+  const { transfer, setTransfer } = props;
+  const { all, none, one, two, three } = transfer;
+
   return (
     <div className={styles.filters}>
       <div className={styles.title}>КОЛИЧЕСТВО ПЕРЕСАДОК</div>
       <Checkbox
-        onChange={(a) => {
-          console.log(a.target.checked);
+        checked={all}
+        onChange={(val) => {
+          setTransfer({ all: val.target.checked, none, one, two, three, i: true });
         }}
       >
         Все
       </Checkbox>
       <Checkbox
-        onChange={(a) => {
-          console.log(a.target.checked);
+        checked={none}
+        onChange={(val) => {
+          setTransfer({ all, none: val.target.checked, one, two, three });
         }}
       >
         Без пересадок
       </Checkbox>
       <Checkbox
-        onChange={(a) => {
-          console.log(a.target.checked);
+        checked={one}
+        onChange={(val) => {
+          setTransfer({ all, none, one: val.target.checked, two, three });
         }}
       >
         1 пересадка
       </Checkbox>
       <Checkbox
-        onChange={(a) => {
-          console.log(a.target.checked);
+        checked={two}
+        onChange={(val) => {
+          setTransfer({ all, none, one, two: val.target.checked, three });
         }}
       >
         2 пересадки
       </Checkbox>
       <Checkbox
-        onChange={(a) => {
-          console.log(a.target.checked);
+        checked={three}
+        onChange={(val) => {
+          setTransfer({ all, none, one, two, three: val.target.checked });
         }}
       >
         3 пересадки
@@ -44,4 +55,17 @@ const Filters = () => {
     </div>
   );
 };
-export default Filters;
+
+const mapStateToProps = (state) => {
+  return {
+    transfer: state.transfer,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  const { setTransfer } = bindActionCreators(actions, dispatch);
+  return {
+    setTransfer,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);

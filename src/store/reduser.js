@@ -1,4 +1,12 @@
-const initialState = { allTickets: [], filter: 'ALL', kind: 'INEXPENSIVE' };
+const transfer = {
+  all: false,
+  none: false,
+  one: false,
+  two: false,
+  three: false,
+};
+
+const initialState = { allTickets: [], transfer, kind: 'INEXPENSIVE' };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_TICKETS':
@@ -7,6 +15,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, filter: action.filter };
     case 'KIND_CHANGE':
       return { ...state, kind: action.kind };
+    case 'SET_TRANSFER':
+      return { ...state, transfer: action.transfer };
     default:
       return state;
   }

@@ -16,7 +16,9 @@ class Api {
   }
 
   async getTickets() {
-    if (!this.searchId) this.newSearchId();
+    if (!this.searchId) {
+      await this.newSearchId();
+    }
     try {
       const res = await fetch(`${this.baseApi}tickets?searchId=${this.searchId}`);
       if (!res.ok) throw new Error(res.statusText);
@@ -25,7 +27,8 @@ class Api {
 
       return data;
     } catch (e) {
-      return { error: e.message };
+      if (e.message === 'Internal Server Error') return { stop: false };
+      return { error: true, text: e.message };
     }
   }
 }

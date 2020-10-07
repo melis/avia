@@ -40,7 +40,7 @@ const Ticket = (props) => {
           <div>
             <div className={styles.titles}>В ПУТИ </div>
             <div className={styles.val}>
-              {Math.trunc(ticket.segments[1].duration / 60)}ч - {ticket.segments[1].duration % 60}м
+              {Math.trunc(ticket.segments[1].duration / 60)}ч {ticket.segments[1].duration % 60}м
             </div>
           </div>
           <div>

@@ -5,7 +5,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import Avia from './components/Avia/Avia';
 import store from './store/store';
-
+window.store = store;
 ReactDOM.render(
   <Provider store={store}>
     <Avia />
