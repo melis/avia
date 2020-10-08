@@ -1,5 +1,5 @@
 import React from 'react';
-
+import time from './time';
 import styles from './Ticket.module.scss';
 
 const Ticket = (props) => {
@@ -19,7 +19,8 @@ const Ticket = (props) => {
     transferInfo2 = `${ticket.segments[1].stops.length} ПЕРЕСАДКИ`;
   }
 
-  let time1, time2;
+  const time1 = time(ticket.segments[0].date, ticket.segments[0].duration);
+  const time2 = time(ticket.segments[1].date, ticket.segments[1].duration);
 
   return (
     <div className={styles.ticket}>
@@ -33,10 +34,7 @@ const Ticket = (props) => {
             <div className={styles.titles}>
               {ticket.segments[0].origin} - {ticket.segments[0].destination}
             </div>
-            <div className={styles.val}>
-              {new Date(ticket.segments[0].date).getHours()}:
-              {new Date(ticket.segments[0].date).getMinutes()}
-            </div>
+            <div className={styles.val}>{time1.join(' - ')}</div>
           </div>
           <div>
             <div className={styles.titles}>В ПУТИ </div>
@@ -54,10 +52,7 @@ const Ticket = (props) => {
             <div className={styles.titles}>
               {ticket.segments[1].origin} - {ticket.segments[1].destination}
             </div>
-            <div className={styles.val}>
-              {new Date(ticket.segments[1].date).getHours()}:
-              {new Date(ticket.segments[1].date).getMinutes()}
-            </div>
+            <div className={styles.val}>{time2.join(' - ')}</div>
           </div>
           <div>
             <div className={styles.titles}>В ПУТИ </div>

@@ -13,10 +13,10 @@ const Tickets = (props) => {
   const [showCount, setShowCount] = useState(5);
   const [localTickets, setLocalTickets] = useState([]);
   // const [error, setError] = useState(false);
-  // getMinutes() getHours()
+
   const getTickets = () => {
     aviaApi.getTickets().then((a) => {
-      console.log(a);
+      // console.log(a);
       if (a.tickets) {
         if (a.tickets.length > 0) setAllTickets(a.tickets);
       }
