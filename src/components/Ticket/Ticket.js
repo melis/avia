@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import time from './time';
 import styles from './Ticket.module.scss';
 
-const Ticket = props => {
+const Ticket = (props) => {
   const { ticket } = props;
   const { segments } = ticket;
   let transferInfo1 = 'ПЕРЕСАДКИ НЕТ';
@@ -27,7 +27,9 @@ const Ticket = props => {
     <div className={styles.ticket}>
       <div className={styles.heder}>
         <div className={styles.price}>{ticket.price} Р</div>
-        <div>{ticket.carrier}</div>
+        <div className={styles.logo}>
+          <img src={`http://pics.avs.io/99/36/${ticket.carrier}.png`} alt="" />
+        </div>
       </div>
       <div className={styles.ticketInfo}>
         <div className={styles.oneWay}>
