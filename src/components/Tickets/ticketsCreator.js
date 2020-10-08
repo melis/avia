@@ -11,9 +11,6 @@ export const ticketsCreator = (arr, kind, showCount, transfer) => {
     });
   } else {
     arr.sort((a, b) => {
-      // if (a.segments[0].duration === b.segments[0].duration) {
-      //   return a.segments[1].duration - b.segments[1].duration;
-      // }
       return (
         a.segments[0].duration +
         a.segments[1].duration -

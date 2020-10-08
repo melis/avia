@@ -1,9 +1,9 @@
 const transfer = {
-  all: false,
-  none: false,
-  one: false,
-  two: false,
-  three: false,
+  all: true,
+  none: true,
+  one: true,
+  two: true,
+  three: true,
 };
 
 const initialState = { allTickets: [], transfer, kind: 'INEXPENSIVE' };

@@ -12,46 +12,48 @@ const Filters = (props) => {
   return (
     <div className={styles.filters}>
       <div className={styles.title}>КОЛИЧЕСТВО ПЕРЕСАДОК</div>
-      <Checkbox
-        checked={all}
-        onChange={(val) => {
-          setTransfer({ all: val.target.checked, none, one, two, three, i: true });
-        }}
-      >
-        Все
-      </Checkbox>
-      <Checkbox
-        checked={none}
-        onChange={(val) => {
-          setTransfer({ all, none: val.target.checked, one, two, three });
-        }}
-      >
-        Без пересадок
-      </Checkbox>
-      <Checkbox
-        checked={one}
-        onChange={(val) => {
-          setTransfer({ all, none, one: val.target.checked, two, three });
-        }}
-      >
-        1 пересадка
-      </Checkbox>
-      <Checkbox
-        checked={two}
-        onChange={(val) => {
-          setTransfer({ all, none, one, two: val.target.checked, three });
-        }}
-      >
-        2 пересадки
-      </Checkbox>
-      <Checkbox
-        checked={three}
-        onChange={(val) => {
-          setTransfer({ all, none, one, two, three: val.target.checked });
-        }}
-      >
-        3 пересадки
-      </Checkbox>
+      <div className={styles.cheks}>
+        <Checkbox
+          checked={all}
+          onChange={(val) => {
+            setTransfer({ all: val.target.checked, none, one, two, three, i: true });
+          }}
+        >
+          Все
+        </Checkbox>
+        <Checkbox
+          checked={none}
+          onChange={(val) => {
+            setTransfer({ all, none: val.target.checked, one, two, three });
+          }}
+        >
+          Без пересадок
+        </Checkbox>
+        <Checkbox
+          checked={one}
+          onChange={(val) => {
+            setTransfer({ all, none, one: val.target.checked, two, three });
+          }}
+        >
+          1 пересадка
+        </Checkbox>
+        <Checkbox
+          checked={two}
+          onChange={(val) => {
+            setTransfer({ all, none, one, two: val.target.checked, three });
+          }}
+        >
+          2 пересадки
+        </Checkbox>
+        <Checkbox
+          checked={three}
+          onChange={(val) => {
+            setTransfer({ all, none, one, two, three: val.target.checked });
+          }}
+        >
+          3 пересадки
+        </Checkbox>
+      </div>
     </div>
   );
 };

@@ -16,4 +16,18 @@
     font-size: 12px;
     margin-bottom: 10px;
   }
+  .cheks {
+    margin-top: 25px;
+  }
+  @media (max-width: 850px) {
+    width: 500px;
+    height: auto;
+    .cheks {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    label {
+      width: 30%;
+    }
+  }
 }

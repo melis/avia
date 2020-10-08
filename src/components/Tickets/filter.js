@@ -1,8 +1,8 @@
 const filter = (arr, transfer) => {
   let newArr = [];
-  const { all, none, one, two, three } = transfer;
-  if (all || (!none && !one && !two && !three)) {
-    return arr;
+  const { none, one, two, three } = transfer;
+  if (!none && !one && !two && !three) {
+    return [];
   } else {
     if (none) {
       newArr = [

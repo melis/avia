@@ -5,6 +5,7 @@ import styles from './Tickets.module.scss';
 import Spinner from '../Spinner/Spinner';
 import aviaApi from '../../aviaApi/aviaApi';
 import { ticketsCreator } from './ticketsCreator';
+import { Result } from 'antd';
 
 const Tickets = (props) => {
   const { allTickets, kind, setAllTickets, transfer } = props;
@@ -12,7 +13,8 @@ const Tickets = (props) => {
   const [loading, setLoading] = useState(false);
   const [showCount, setShowCount] = useState(5);
   const [localTickets, setLocalTickets] = useState([]);
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState('');
 
   const getTickets = () => {
     aviaApi.getTickets().then((a) => {
@@ -20,9 +22,14 @@ const Tickets = (props) => {
       if (a.tickets) {
         if (a.tickets.length > 0) setAllTickets(a.tickets);
       }
-      if (!a.stop) {
+      if (!a.stop && !a.error) {
         getTickets();
       } else setLoading(true);
+      if (a.error) {
+        setLoading(true);
+        setError(a.error);
+        setErrorText(a.text);
+      }
     });
   };
 
@@ -34,13 +41,23 @@ const Tickets = (props) => {
     setLocalTickets(ticketsCreator([...allTickets], kind, showCount, transfer));
   }, [allTickets.length, showCount, kind, all, none, one, two, three]);
 
+  if (error) {
+    return <Result status="warning" title={errorText} />;
+  }
+
   return (
     <div>
       <Spinner loading={loading} />
-      <div>{localTickets}</div>
-      <div className={styles.showMore}>
-        <span onClick={() => setShowCount(showCount + 5)}>Показать еще </span>
-      </div>
+      {localTickets[0] ? (
+        <div>
+          <div>{localTickets}</div>
+          <div className={styles.showMore}>
+            <span onClick={() => setShowCount(showCount + 5)}>Показать еще </span>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.notTicket}>Рейсов, подходящих под заданные фильтры, не найдено</div>
+      )}
     </div>
   );
 };
