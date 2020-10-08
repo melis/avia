@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Result } from 'antd';
+import PropTypes from 'prop-types';
 import * as actions from '../../store/actions';
 import styles from './Tickets.module.scss';
 import Spinner from '../Spinner/Spinner';
 import aviaApi from '../../aviaApi/aviaApi';
 import { ticketsCreator } from './ticketsCreator';
-import { Result } from 'antd';
 
-const Tickets = (props) => {
+const Tickets = props => {
   const { allTickets, kind, setAllTickets, transfer } = props;
   const { all, none, one, two, three } = transfer;
   const [loading, setLoading] = useState(false);
@@ -17,8 +18,7 @@ const Tickets = (props) => {
   const [errorText, setErrorText] = useState('');
 
   const getTickets = () => {
-    aviaApi.getTickets().then((a) => {
-      // console.log(a);
+    aviaApi.getTickets().then(a => {
       if (a.tickets) {
         if (a.tickets.length > 0) setAllTickets(a.tickets);
       }
@@ -62,12 +62,24 @@ const Tickets = (props) => {
   );
 };
 
-const mapToProps = (state) => {
+const mapToProps = state => {
   return {
     kind: state.kind,
     transfer: state.transfer,
     allTickets: state.allTickets,
   };
+};
+
+Tickets.propTypes = {
+  allTickets: PropTypes.array,
+  kind: PropTypes.string,
+  setAllTickets: PropTypes.func,
+  transfer: PropTypes.object,
+  all: PropTypes.bool,
+  none: PropTypes.bool,
+  one: PropTypes.bool,
+  two: PropTypes.bool,
+  three: PropTypes.bool,
 };
 
 export default connect(mapToProps, actions)(Tickets);

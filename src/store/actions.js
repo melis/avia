@@ -1,5 +1,5 @@
-export const setAllTickets = (tickets) => {
-  return (dispatch) => {
+export const setAllTickets = tickets => {
+  return dispatch => {
     dispatch({
       type: 'SET_TICKETS',
       tickets,
@@ -7,11 +7,11 @@ export const setAllTickets = (tickets) => {
   };
 };
 
-export const setFilter = (filter) => {
+export const setFilter = filter => {
   return { type: 'FILTER_CHANGE', filter };
 };
 
-export const setKind = (kind) => {
+export const setKind = kind => {
   return { type: 'KIND_CHANGE', kind };
 };
 
@@ -21,12 +21,10 @@ export const setTransfer = ({ all, none, one, two, three, i }) => {
     one = all;
     two = all;
     three = all;
+  } else if (none && one && two && three) {
+    all = true;
   } else {
-    if (none && one && two && three) {
-      all = true;
-    } else {
-      all = false;
-    }
+    all = false;
   }
   return { type: 'SET_TRANSFER', transfer: { all, none, one, two, three } };
 };

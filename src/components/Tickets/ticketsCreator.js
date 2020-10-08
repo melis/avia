@@ -6,7 +6,7 @@ export const ticketsCreator = (arr, kind, showCount, transfer) => {
   let i = 0;
   arr = filter(arr, transfer);
   if (kind === 'INEXPENSIVE') {
-    arr.sort(function (a, b) {
+    arr.sort((a, b) => {
       return a.price - b.price;
     });
   } else {
@@ -20,7 +20,7 @@ export const ticketsCreator = (arr, kind, showCount, transfer) => {
   }
 
   arr.length = showCount;
-  return arr.map((el) => {
+  return arr.map(el => {
     return <Ticket key={i++} ticket={el} />;
   });
 };

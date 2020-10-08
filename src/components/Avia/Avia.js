@@ -4,7 +4,7 @@ import logo from './Logo.svg';
 import Filters from '../Filters/Filters';
 import Content from '../Content/Content';
 
-const Avia = (props) => {
+const Avia = () => {
   return (
     <div className={`${styles.container} container`}>
       <img src={logo} alt="" />

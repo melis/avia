@@ -1,8 +1,7 @@
 class Api {
   baseApi = 'https://aviasales-test-api.java-mentor.com/';
+
   searchId = '';
-  // https://aviasales-test-api.java-mentor.com/search
-  // https://aviasales-test-api.java-mentor.com/tickets?searchId={id}
 
   async newSearchId() {
     try {
@@ -11,7 +10,7 @@ class Api {
       const search = await res.json();
       this.searchId = search.searchId;
     } catch (e) {
-      console.log(e);
+      this.newSearchId();
     }
   }
 
