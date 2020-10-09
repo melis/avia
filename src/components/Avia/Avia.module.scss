@@ -1,5 +1,6 @@
 .container {
   max-width: 960px;
+  min-width: 320px;
   margin: auto;
   background-color: #f3f7fa;
   padding: 20px;
@@ -14,12 +15,20 @@
     display: flex;
     justify-content: center;
   }
-  @media (max-width: 850px) {
+  @media (max-width: 992px) {
     .app {
       display: block;
       > div {
         margin: auto;
       }
+    }
+  }
+  @media (max-width: 768px) {
+    .app {
+      width: 320px;
+    }
+    > div {
+      margin: auto;
     }
   }
 }

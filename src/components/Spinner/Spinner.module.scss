@@ -1,4 +1,8 @@
 .spinner {
   height: 15px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 320px;
+  }
 }
